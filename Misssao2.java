@@ -5,18 +5,14 @@ public class Misssao2 {
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Quantos número você quer saber a média:");
-        int quantNumero = sc.nextInt();
+        double quantNumero = sc.nextInt();
 
         double media = 0;
         for (int i = 1; i <= quantNumero; i++) {
-
             System.out.print("Digite um numero pra calcular sua média:");
             double pergunmedia = sc.nextDouble();
-
-            media += pergunmedia;
-            
+            media += pergunmedia;            
         }
-
         double resulMedia = media/quantNumero;
         System.out.printf("Média: %.2f%n", resulMedia);
     }
