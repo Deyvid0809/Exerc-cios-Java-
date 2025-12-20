@@ -7,6 +7,17 @@ public class Missao5 {
         davi.apresentar();
         maria.apresentar();
 
+        Produto carro = new Produto();
+
+        carro.setEstoque(-1);
+        carro.setPreco(-20.000);
+        carro.setNome("M5");
+        System.out.print(carro.resumo());
+        carro.setEstoque(1);
+        carro.setPreco(20000.00);
+        carro.setNome("M5");
+        System.out.print(carro.resumo());
+
     }
 
     
@@ -25,4 +36,45 @@ class Pessoa {
             this.idade = idade;
         }
         
+    }
+
+class Produto{
+
+    private String nome;
+    private double preco;
+    private int estoque;
+    
+    public int getEstoque() {
+        return estoque;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+
+        if (preco > 0) {
+        this.preco = preco;
+        }
+    }
+
+    public void setEstoque(int estoque) {
+        if (estoque >= 0) {
+        this.estoque = estoque;
+        }
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String resumo(){
+        return String.format("Produto: %s | Preço: %.2f | Estoque: %d", nome, preco, estoque);
+    }
+
     }
