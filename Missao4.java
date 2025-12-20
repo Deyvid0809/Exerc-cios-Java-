@@ -14,22 +14,39 @@ public class Missao4 {
         op = sc.nextInt();
         
         if (op == 1) {
-            System.out.println("Olá, seja bem-vindo!");
+            dizerOla();
         }else if (op == 2) {
-            System.out.println("Você está aprendendo Java");
+            mostrarFrase();
         }else if(op == 3){
-            System.out.println("Me diga seu nome:");
-            String nome = sc.next();
-            nome = nome.toUpperCase();
-            System.err.printf("Seu nome com letras Maiúsculas: %s", nome);
-            System.err.println();
+            nomeMaiusculo(sc);  
         } 
         else if (op == 4) {
-            System.out.println("Encerrando programa!!");
+            encerrar();
+            sc.close();
         } else{
-        System.out.println("Opção inválida");}
+            invalido();
         }
-
-        sc.close();
     }
+
+
+    } 
+
+    static void dizerOla(){
+        System.out.println("Olá, seja bem-vindo!");
+    }
+    static void mostrarFrase(){
+        System.out.println("Você está aprendendo Java");
+    }
+    static void nomeMaiusculo(Scanner sc){
+        System.out.println("Me diga seu nome:");
+        String nome = sc.next();
+        nome = nome.toUpperCase();
+        System.out.printf("Seu nome com letras Maiúsculas: %s", nome);
+        System.out.println();
+    }
+    static void encerrar(){
+        System.out.println("Encerrando programa!!");
+    }
+    static void invalido(){
+        System.out.println("Opção inválida");}
 }
