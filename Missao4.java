@@ -15,24 +15,29 @@ public class Missao4 {
         System.out.println("6 - sair");
         op = sc.nextInt();
         sc.nextLine();
-        
-        if (op == 1) {
+
+        switch (op) {
+            case 1:
             dizerOla();
-        }else if (op == 2) {
+                break;
+            case 2:
             mostrarFrase();
-        }else if(op == 3){
+                break;
+            case 3:
             nomeMaiusculo(sc);  
-        } 
-        else if(op == 4){
+                break;
+            case 4:
             contarLetraNome(sc);
-        } 
-        else if(op == 5){
+                break;
+            case 5:
             cotadorVogaisNome(sc);
-        } 
-        else if (op == 6) {
+                break;
+            case 6:
             encerrar();
-        } else{
+                break;
+            default:
             invalido();
+                break;
         }
     }
     sc.close();
@@ -70,7 +75,7 @@ public class Missao4 {
         for (int i = 0; i < nome.length(); i++) {
             char letra = nomeM.charAt(i);
             if (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O' ||  letra == 'U') {
-                contador += 1;
+                contador++;
             }
         }
         System.out.printf("Tem %d vogais", contador);
