@@ -5,13 +5,14 @@ public class Missao4 {
         Scanner sc = new Scanner(System.in);
 
         int op = 0;
-        while (op != 5) {
+        while (op != 6) {
         System.out.println("Escolha uma opção:");
         System.out.println("1 - Dizer Ola");
         System.out.println("2 - Mostrar uma frase");
         System.out.println("3 - Digitar nome e mostrar em maiúsculo");
         System.out.println("4 - Contra letra em um nome");
-        System.out.println("5 - sair");
+        System.out.println("5 - Contra de vogais em um nome");
+        System.out.println("6 - sair");
         op = sc.nextInt();
         sc.nextLine();
         
@@ -25,14 +26,16 @@ public class Missao4 {
         else if(op == 4){
             contarLetraNome(sc);
         } 
-        else if (op == 5) {
+        else if(op == 5){
+            cotadorVogaisNome(sc);
+        } 
+        else if (op == 6) {
             encerrar();
-            sc.close();
         } else{
             invalido();
         }
     }
-
+    sc.close();
 
     } 
 
@@ -58,6 +61,22 @@ public class Missao4 {
         System.out.printf("Seu nome com letras Maiúsculas: %s", nome);
         System.out.println();
     }
+
+    static void cotadorVogaisNome(Scanner sc){
+        System.out.println("Me diga seu nome:");
+        String nome = sc.nextLine();
+        String nomeM = nome.toUpperCase();
+        int contador = 0;
+        for (int i = 0; i < nome.length(); i++) {
+            char letra = nomeM.charAt(i);
+            if (letra == 'A' || letra == 'E' || letra == 'I' || letra == 'O' ||  letra == 'U') {
+                contador += 1;
+            }
+        }
+        System.out.printf("Tem %d vogais", contador);
+        System.out.println();
+    }
+
     static void encerrar(){
         System.out.println("Encerrando programa!!");
     }
