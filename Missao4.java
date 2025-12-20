@@ -56,7 +56,7 @@ public class Missao4 {
         String nome = sc.nextLine();
         int letras = nome.length();
         System.out.printf("Tem %d letras", letras);
-        System.err.println();
+        System.out.println();
     }
 
     static void nomeMaiusculo(Scanner sc){
