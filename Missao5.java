@@ -1,26 +1,57 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Missao5 {
     public static void main(String[] args) {
 
-        Pessoa davi = new Pessoa("Davi Faustino Souza Lima", 18);
-        Pessoa maria = new Pessoa("Maria clara", 20);
+        ArrayList<Produto> produtos = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        int op = 0;
+        while (op != 3) {
+            System.out.println("1 - Cadastrar produto");
+            System.out.println("2 - Listar produtos");
+            System.out.println("3 - Sair");
+            op = sc.nextInt();
+            sc.nextLine();
+            switch (op) {
+                case 1:
+                cadastrarProduto(sc, produtos);
+                    break;
+                case 2:
+                verProdutos(produtos);
+                    break;
+                default:
+                encerrar();
+                    break;
+            }
+        }
 
-        davi.apresentar();
-        maria.apresentar();
-
-        Produto carro = new Produto();
-
-        carro.setEstoque(-1);
-        carro.setPreco(-20.000);
-        carro.setNome("M5");
-        System.out.print(carro.resumo());
-        carro.setEstoque(1);
-        carro.setPreco(20000.00);
-        carro.setNome("M5");
-        System.out.print(carro.resumo());
+    sc.close();
 
     }
 
-    
+    static void encerrar(){
+        System.out.println("Encerrando programa!!");}
+
+    static void verProdutos(ArrayList produtos){
+    System.out.println(produtos)  ;   
+    }
+
+
+
+
+    static void cadastrarProduto(Scanner sc, ArrayList produtos){
+        System.out.println("Qual nome do produto:");
+        String pName = sc.nextLine();
+        System.out.println("Qual preço do produto:");
+        double pPreco = sc.nextDouble();
+        System.out.println("Quanto de estoque do produto:");
+        int pEstoque = sc.nextInt();
+
+        produtos.add(new Produto(pName, pPreco, pEstoque));
+
+
+        }
 }
 class Pessoa {
         
@@ -56,21 +87,14 @@ class Produto{
         return preco;
     }
 
-    public void setPreco(double preco) {
-
-        if (preco > 0) {
-        this.preco = preco;
-        }
-    }
-
-    public void setEstoque(int estoque) {
-        if (estoque >= 0) {
-        this.estoque = estoque;
-        }
-    }
-
-    public void setNome(String nome) {
+    public Produto(String nome, double preco, int estoque){
         this.nome = nome;
+        this.preco = preco;
+        this.estoque = estoque;
+    }
+    @Override
+    public String toString() {
+        return "Produto{Nome='" + nome + "', preço=" + preco + "', estoque=" + estoque + '}';
     }
 
     public String resumo(){
