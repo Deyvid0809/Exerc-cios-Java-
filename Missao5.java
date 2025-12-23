@@ -7,21 +7,27 @@ public class Missao5 {
         ArrayList<Produto> produtos = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         int op = 0;
-        while (op != 3) {
+        while (op != 4) {
             System.out.println("1 - Cadastrar produto");
             System.out.println("2 - Listar produtos");
-            System.out.println("3 - Sair");
-            op = sc.nextInt();
-            sc.nextLine();
+            System.out.println("3 - Prcurar produto");
+            System.out.println("4 - Sair");
+            op = Integer.parseInt(sc.nextLine());
             switch (op) {
                 case 1:
                 cadastrarProduto(sc, produtos);
                     break;
-                case 2:
+                case 2: 
                 verProdutos(produtos);
                     break;
-                default:
+                case 3:
+                procurarProduto(sc, produtos);
+                    break;
+                case 4:
                 encerrar();
+                    break;
+                default:
+                System.out.print("Opção inválida");
                     break;
             }
         }
@@ -30,45 +36,59 @@ public class Missao5 {
 
     }
 
+    //Procura um produto
+    static void procurarProduto(Scanner sc, ArrayList<Produto> produtos){
+        System.out.println("Qual produto deseja procurar?");
+        String pName = sc.nextLine();
+        boolean encontro = false;
+
+        for (Produto p : produtos){
+            if (p.getNome().equalsIgnoreCase(pName)) {
+                System.out.print(p);
+                encontro = true;
+                break;
+            }
+            
+        }
+        if (!encontro) {
+            System.out.println("Produto não encontrado!!!");
+        }
+    }
+
+    //Ecerra o loop
     static void encerrar(){
         System.out.println("Encerrando programa!!");}
 
-    static void verProdutos(ArrayList produtos){
-    System.out.println(produtos)  ;   
+    //Mostra todos os produtos cadastrados
+    static void verProdutos(ArrayList<Produto> produtos){
+        if (produtos.isEmpty()) {
+            System.out.println("Não tem produtos cadastrados");
+        } else{
+            for(Produto p : produtos){
+                System.out.print(p);
+                System.out.println();
+            }
+        }
     }
 
-
-
-
-    static void cadastrarProduto(Scanner sc, ArrayList produtos){
+    //Cadastra produto
+    static void cadastrarProduto(Scanner sc, ArrayList<Produto> produtos){
         System.out.println("Qual nome do produto:");
         String pName = sc.nextLine();
         System.out.println("Qual preço do produto:");
-        double pPreco = sc.nextDouble();
+        double pPreco = Double.parseDouble(sc.nextLine());
         System.out.println("Quanto de estoque do produto:");
-        int pEstoque = sc.nextInt();
+        int pEstoque = Integer.parseInt(sc.nextLine());
 
         produtos.add(new Produto(pName, pPreco, pEstoque));
+
+        System.out.println("Produto cadastrado com sucesso!!!");
 
 
         }
 }
-class Pessoa {
-        
-        private String nome;
-        private int idade;
 
-        public void apresentar(){
-            System.out.printf("Prezer, meu nome é %s e tenho %d anos.%n", nome, idade);
-        }
-
-        public Pessoa(String nome, int idade){
-            this.nome = nome;
-            this.idade = idade;
-        }
-        
-    }
-
+//Molde do Produto e printa os produtos no formato
 class Produto{
 
     private String nome;
@@ -94,11 +114,7 @@ class Produto{
     }
     @Override
     public String toString() {
-        return "Produto{Nome='" + nome + "', preço=" + preco + "', estoque=" + estoque + '}';
-    }
-
-    public String resumo(){
-        return String.format("Produto: %s | Preço: %.2f | Estoque: %d", nome, preco, estoque);
+        return "Produto{Nome='" + nome + "', preço=R$" + preco + "', estoque=" + estoque + '}';
     }
 
     }

@@ -6,7 +6,7 @@ public class Missao7 {
         Scanner sc = new Scanner(System.in);
         ArrayList<String> nomes = new ArrayList<>();
         String nome = "a";
-            System.out.println("Vou guarda quanto nomes você quiser, quando for para digite fim");
+            System.out.println("Vou guarda quanto nomes você quiser. quando for parar digite fim");
         while (true) {
             nome = sc.nextLine();
 
