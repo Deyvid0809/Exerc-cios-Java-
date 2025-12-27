@@ -7,13 +7,14 @@ public class Missao5 {
         ArrayList<Produto> produtos = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         int op = 0;
-        while (op != 6) {
+        while (op != 7) {
             System.out.println("1 - Cadastrar produto");
             System.out.println("2 - Listar produtos");
             System.out.println("3 - Prcurar produto");
             System.out.println("4 - Deletar produto");
             System.out.println("5 - Alterar preço");
-            System.out.println("6 - Sair");
+            System.out.println("6 - Alterar estoque");
+            System.out.println("7 - Sair");
             
             op = Integer.parseInt(sc.nextLine());
             switch (op) {
@@ -33,6 +34,9 @@ public class Missao5 {
                 alterarPreco(sc, produtos);
                     break;
                 case 6:
+                alterarEstoque(sc, produtos);
+                    break;
+                case 7:
                 encerrar();
                     break;
                 default:
@@ -45,6 +49,42 @@ public class Missao5 {
 
     }
 
+        //Alterar Estoque de um produto
+    static void alterarEstoque(Scanner sc, ArrayList<Produto> produtos){
+    if (produtos.isEmpty()) {
+            System.err.println("Nenhum produto na lista!!!");
+            return;
+        }
+        System.out.println("Qual nomedo produto que deseja mudar o estoque?");
+        String nome= sc.nextLine();
+        
+        Produto encontrado = null;
+
+        for(Produto p : produtos){
+            if (p.getNome().equalsIgnoreCase(nome)) {
+                encontrado = p;
+                break;
+            }
+        }
+
+        if (encontrado == null) {
+            System.err.println("Produto não encontrado");
+            return;
+        }
+
+        System.out.println("Quanto de estoque tem agora:");
+        int estoque = Integer.parseInt(sc.nextLine());
+    
+
+        if (estoque >= 0) {
+            encontrado.setEstoque(estoque);
+            System.out.println("Estoque alterado com sucesso");
+            System.out.println(encontrado);
+        }else{
+            System.err.println("Estoque invalido digite novamente");
+        }
+
+    }
 
     //Alterar Preço de um produto
     static void alterarPreco(Scanner sc, ArrayList<Produto> produtos){
