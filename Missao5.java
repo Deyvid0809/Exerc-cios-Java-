@@ -198,10 +198,16 @@ public class Missao5 {
         double pPreco = Double.parseDouble(sc.nextLine());
         System.out.println("Quanto de estoque do produto:");
         int pEstoque = Integer.parseInt(sc.nextLine());
-
-        produtos.add(new Produto(pName, pPreco, pEstoque));
-
-        System.out.println("Produto cadastrado com sucesso!!!");
+        if (pName.isEmpty()) {
+            System.err.println("Nome do produto digitado errado");
+        }else if (pPreco < 0) {
+            System.err.println("Preço do produto inválido");
+        }else if (pEstoque < 0) {
+            System.err.println("Quantida de estoque inválida");
+        }else{
+            produtos.add(new Produto(pName, pPreco, pEstoque));
+            System.out.println("Produto cadastrado com sucesso!!!");
+        }
 
 
         }
