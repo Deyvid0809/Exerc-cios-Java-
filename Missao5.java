@@ -44,20 +44,22 @@ public class Missao5 {
 
     //Deletar um produto
     static void deletarProduto(Scanner sc, ArrayList<Produto> produtos){
+        if (produtos.isEmpty()) {
+            System.err.println("Nenhum produto na lista!!!");
+            return;
+        }
         System.out.println("Qual produto deseja deleta?");
         String pName = sc.nextLine();
-        boolean encontro = false;
         Produto encontrado = null;
         for (Produto p : produtos){
             if (p.getNome().equalsIgnoreCase(pName)) {
                 encontrado = p;
                 System.out.println();
-                encontro = true;
                 break;
             }
             
         }
-        if (!encontro) {
+        if (encontrado == null) {
         System.out.println("Produto não encontrado!!!");
         }else{
         System.out.println("Produto deletado com sucesso!!!");
@@ -68,6 +70,10 @@ public class Missao5 {
 
     //Procura um produto
     static void procurarProduto(Scanner sc, ArrayList<Produto> produtos){
+        if (produtos.isEmpty()) {
+            System.err.println("Nenhum produto na lista!!!");
+            return;
+        }
         System.out.println("Qual produto deseja procurar?");
         String pName = sc.nextLine();
         boolean encontro = false;
