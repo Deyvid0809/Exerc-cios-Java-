@@ -7,12 +7,13 @@ public class Missao5 {
         ArrayList<Produto> produtos = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         int op = 0;
-        while (op != 5) {
+        while (op != 6) {
             System.out.println("1 - Cadastrar produto");
             System.out.println("2 - Listar produtos");
             System.out.println("3 - Prcurar produto");
             System.out.println("4 - Deletar produto");
-            System.out.println("5 - Sair");
+            System.out.println("5 - Alterar preço");
+            System.out.println("6 - Sair");
             
             op = Integer.parseInt(sc.nextLine());
             switch (op) {
@@ -29,6 +30,9 @@ public class Missao5 {
                 deletarProduto(sc, produtos);
                     break;
                 case 5:
+                alterarPreco(sc, produtos);
+                    break;
+                case 6:
                 encerrar();
                     break;
                 default:
@@ -38,6 +42,44 @@ public class Missao5 {
         }
 
     sc.close();
+
+    }
+
+
+    //Alterar Preço de um produto
+    static void alterarPreco(Scanner sc, ArrayList<Produto> produtos){
+    if (produtos.isEmpty()) {
+            System.err.println("Nenhum produto na lista!!!");
+            return;
+        }
+        System.out.println("Qual nomedo produto que deseja mudar o preço?");
+        String nome= sc.nextLine();
+        
+        Produto encontrado = null;
+
+        for(Produto p : produtos){
+            if (p.getNome().equalsIgnoreCase(nome)) {
+                encontrado = p;
+                break;
+            }
+        }
+
+        if (encontrado == null) {
+            System.err.println("Produto não encontrado");
+            return;
+        }
+
+        System.out.println("Digite para qual preço você deseja alterar:");
+        double preco = Double.parseDouble(sc.nextLine());
+    
+
+        if (preco > 0) {
+            encontrado.setPreco(preco);
+            System.out.println("Preço alterado com sucesso");
+            System.out.println(encontrado);
+        }else{
+            System.err.println("Preço invalido digite novamente");
+        }
 
     }
 
@@ -142,6 +184,14 @@ class Produto{
 
     public double getPreco() {
         return preco;
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
 
     public Produto(String nome, double preco, int estoque){
