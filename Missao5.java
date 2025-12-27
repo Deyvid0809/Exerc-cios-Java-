@@ -7,11 +7,13 @@ public class Missao5 {
         ArrayList<Produto> produtos = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         int op = 0;
-        while (op != 4) {
+        while (op != 5) {
             System.out.println("1 - Cadastrar produto");
             System.out.println("2 - Listar produtos");
             System.out.println("3 - Prcurar produto");
-            System.out.println("4 - Sair");
+            System.out.println("4 - Deletar produto");
+            System.out.println("5 - Sair");
+            
             op = Integer.parseInt(sc.nextLine());
             switch (op) {
                 case 1:
@@ -24,6 +26,9 @@ public class Missao5 {
                 procurarProduto(sc, produtos);
                     break;
                 case 4:
+                deletarProduto(sc, produtos);
+                    break;
+                case 5:
                 encerrar();
                     break;
                 default:
@@ -36,6 +41,31 @@ public class Missao5 {
 
     }
 
+
+    //Deletar um produto
+    static void deletarProduto(Scanner sc, ArrayList<Produto> produtos){
+        System.out.println("Qual produto deseja deleta?");
+        String pName = sc.nextLine();
+        boolean encontro = false;
+        Produto encontrado = null;
+        for (Produto p : produtos){
+            if (p.getNome().equalsIgnoreCase(pName)) {
+                encontrado = p;
+                System.out.println();
+                encontro = true;
+                break;
+            }
+            
+        }
+        if (!encontro) {
+        System.out.println("Produto não encontrado!!!");
+        }else{
+        System.out.println("Produto deletado com sucesso!!!");
+        produtos.remove(encontrado);
+        }
+    }
+
+
     //Procura um produto
     static void procurarProduto(Scanner sc, ArrayList<Produto> produtos){
         System.out.println("Qual produto deseja procurar?");
@@ -45,6 +75,7 @@ public class Missao5 {
         for (Produto p : produtos){
             if (p.getNome().equalsIgnoreCase(pName)) {
                 System.out.print(p);
+                System.out.println();
                 encontro = true;
                 break;
             }
@@ -114,7 +145,7 @@ class Produto{
     }
     @Override
     public String toString() {
-        return "Produto{Nome='" + nome + "', preço=R$" + preco + "', estoque=" + estoque + '}';
+        return "Produto{Nome=" + nome + ", preço=R$" + preco + ", estoque=" + estoque + "}";
     }
 
     }
